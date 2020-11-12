@@ -7,9 +7,11 @@ const WBHeader: FC = () => {
   return (
     <Box
       shadow="0 5px 10px 0px rgba(0, 0, 0, 0.15)"
-      position={{ base: 'fixed', lg: 'relative' }}
+      position={{ base: 'fixed' }}
+      top={0}
       w="100%"
       zIndex={{ base: 9999, lg: 99 }}
+      display={{ base: 'none', lg: 'block' }}
     >
       <Flex as="nav" align="center" justify="center" wrap="wrap" pt={{ lg: '10px' }} bg={palette.WHITE} w="100%">
         <Flex

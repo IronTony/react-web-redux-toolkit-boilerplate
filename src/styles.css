@@ -3,6 +3,7 @@ html {
 }
 
 body {
+  background-color: #ecf0f1;
   color: #34495e;
   font-family: 'Nunito Sans', sans-serif;
   -webkit-font-smoothing: antialiased;

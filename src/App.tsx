@@ -1,14 +1,21 @@
 import * as React from 'react';
-import { FC, useLayoutEffect } from 'react';
+import { FC, useEffect, useLayoutEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import FontFaceObserver from 'fontfaceobserver';
-import { ThemeProvider, CSSReset } from '@chakra-ui/core';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { CSSReset, useToast, Flex } from '@chakra-ui/core';
+import { Switch, Route } from 'react-router-dom';
+import { messageHandlerFullInfo } from 'redux/messageHandler/selectors';
+import { messageHandlerReset } from 'redux/messageHandler/actions';
 import WBHeader from 'components/WBHeader';
+import ScrollToTop from 'components/ScrollToTopOnMount';
 import Homepage from 'pages/Homepage';
 import AnotherPage from 'pages/AnotherPage';
-import customTheme from 'theme/theme';
 
 const App: FC = () => {
+  const dispatch = useDispatch();
+  const toast = useToast();
+  const hasGeneralMessage = useSelector(messageHandlerFullInfo);
+
   // Remember to change the name of the font based on what you are using
   const font = new FontFaceObserver('Nunito+Sans');
   const html = document.documentElement;
@@ -27,11 +34,29 @@ const App: FC = () => {
         html.classList.add('fonts-failed');
       });
   });
+
+  useEffect(() => {
+    if (hasGeneralMessage?.message) {
+      toast({
+        // title: 'Warning.',
+        description: hasGeneralMessage.description,
+        status: hasGeneralMessage.type,
+        duration: 3000,
+        isClosable: true,
+      });
+
+      setTimeout(() => {
+        dispatch(messageHandlerReset());
+      }, 3000);
+    }
+  }, [hasGeneralMessage, toast, dispatch]);
+
   return (
-    <ThemeProvider theme={customTheme}>
+    <Flex height="100%" width="100%">
       <CSSReset />
-      <Router>
+      <>
         <WBHeader />
+        <ScrollToTop />
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
@@ -39,8 +64,8 @@ const App: FC = () => {
           <Route exact path="/" component={Homepage} />
           <Route path="/another-page" component={AnotherPage} />
         </Switch>
-      </Router>
-    </ThemeProvider>
+      </>
+    </Flex>
   );
 };
 
