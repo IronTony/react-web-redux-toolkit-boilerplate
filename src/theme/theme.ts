@@ -49,6 +49,18 @@ const customTheme = {
   colors: {
     ...theme.colors,
     ...palette,
+    rose: {
+      50: '#ffe1e9',
+      100: '#ffb1c0',
+      200: '#ff7e98',
+      300: '#ff4c6f',
+      400: '#ff1a45',
+      500: '#e6002c',
+      600: '#b40021',
+      700: '#810017',
+      800: '#50000d',
+      900: '#210003',
+    },
   },
   breakpoints,
   fonts: {

@@ -2,6 +2,17 @@
   "name": "benetton-art-experience-backoffice",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js",
+    "lint:staged": "pretty-quick --staged && lint-staged",
+    "dependencies:checkCircular": "madge src/ --circular",
+    "dependencies:graph": "madge src/ --circular --image deps-graph.svg",
+    "start:development": "env-cmd -f src/env/.env.development yarn start",
+    "build:staging": "env-cmd -f src/env/.env.staging yarn build",
+    "build:production": "env-cmd -f src/env/.env.production yarn build"
+  },
   "dependencies": {
     "@babel/core": "7.12.3",
     "@chakra-ui/core": "^0.8.0",
@@ -29,9 +40,11 @@
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "connected-react-router": "^6.8.0",
     "css-loader": "4.3.0",
+    "date-fns": "^2.16.1",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "emotion-theming": "^10.0.27",
+    "env-cmd": "^10.1.0",
     "eslint": "^7.11.0",
     "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-flowtype": "^5.2.0",
@@ -45,12 +58,14 @@
     "file-loader": "6.1.1",
     "fontfaceobserver": "^2.1.0",
     "fs-extra": "^9.0.1",
+    "history": "4.10.1",
     "html-webpack-plugin": "4.5.0",
     "identity-obj-proxy": "3.0.0",
     "jest": "26.6.0",
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
+    "lodash": "^4.17.20",
     "mini-css-extract-plugin": "0.11.3",
     "optimize-css-assets-webpack-plugin": "5.0.4",
     "pnp-webpack-plugin": "1.6.4",
@@ -59,10 +74,12 @@
     "postcss-normalize": "8.0.1",
     "postcss-preset-env": "6.7.0",
     "postcss-safe-parser": "5.0.2",
+    "prompts": "2.4.0",
     "react": "^17.0.1",
     "react-app-polyfill": "^2.0.0",
-    "react-dev-utils": "^11.0.0",
+    "react-dev-utils": "^11.0.1",
     "react-dom": "^17.0.1",
+    "react-icons": "^3.11.0",
     "react-redux": "^7.2.1",
     "react-refresh": "^0.8.3",
     "react-router-dom": "^5.2.0",
@@ -84,26 +101,12 @@
     "with-query": "^1.3.0",
     "workbox-webpack-plugin": "5.1.4"
   },
-  "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js",
-    "lint:staged": "pretty-quick --staged && lint-staged",
-    "dependencies:checkCircular": "madge src/ --circular",
-    "dependencies:graph": "madge src/ --image deps-graph.svg"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "lint-staged": {
     "*.{ts,tsx}": "eslint --cache --fix"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint:staged && yarn dependencies:checkCircular"
+      "pre-commit": "yarn lint:staged && yarn dependencies:checkCircular && yarn dependencies:graph"
     }
   },
   "madge": {
@@ -118,6 +121,12 @@
         "skipTypeImports": true
       }
     }
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
@@ -190,10 +199,13 @@
   },
   "devDependencies": {
     "@types/react-redux": "^7.1.9",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-emotion": "^10.0.27",
+    "eslint-plugin-prettier": "^3.1.3",
     "husky": "^4.3.0",
-    "lint-staged": "^10.4.0",
+    "lint-staged": "10.4.2",
     "madge": "^3.11.0",
     "prettier": "^2.1.2",
-    "pretty-quick": "^3.0.2"
+    "pretty-quick": "3.1.0"
   }
 }
