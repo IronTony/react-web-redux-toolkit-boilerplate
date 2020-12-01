@@ -3,7 +3,7 @@ import { GetAllFilmsRequestPayload } from './types';
 
 export async function getAllFilms({ limit }: GetAllFilmsRequestPayload) {
   try {
-    const url = withQuery(`https://ghibliapi.herokuapp.com/films`, {
+    const url = withQuery(`${process.env.REACT_APP_BASE_API_URL}/films`, {
       limit,
     });
 
