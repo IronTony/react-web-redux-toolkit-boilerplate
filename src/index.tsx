@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from '@chakra-ui/core';
+import { I18nextProvider } from 'react-i18next';
 import { store, persistor } from 'redux/store';
+import i18n from 'i18n';
 import { history } from 'routes/history';
+import WBLoader from 'components/WBLoader';
 import customTheme from 'theme/theme';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
@@ -16,9 +19,13 @@ ReactDOM.render(
     <ThemeProvider theme={customTheme}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <ConnectedRouter history={history}>
-            <App />
-          </ConnectedRouter>
+          <Suspense fallback={<WBLoader />}>
+            <ConnectedRouter history={history}>
+              <I18nextProvider i18n={i18n}>
+                <App />
+              </I18nextProvider>
+            </ConnectedRouter>
+          </Suspense>
         </PersistGate>
       </Provider>
     </ThemeProvider>

@@ -1,26 +1,10 @@
-import { configureStore, getDefaultMiddleware, Reducer } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import { connectRouter, routerMiddleware } from 'connected-react-router';
-import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, persistStore, persistCombineReducers } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import { routerMiddleware } from 'connected-react-router';
+import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, persistStore } from 'redux-persist';
 import { history } from 'routes/history';
-import reducers from './reducers';
 import rootSaga from './rootsaga';
-
-const persistConfig = {
-  key: 'root',
-  storage,
-  whitelist: [],
-  blacklist: ['router'],
-};
-
-// Reducers
-const allReducers = {
-  ...reducers,
-  router: connectRouter(history) as Reducer, // to fix CombineState and type incompatibility
-};
-
-const persistedRootReducer = persistCombineReducers(persistConfig, allReducers);
+import persistedRootReducer from './reducers';
 
 // Middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -36,8 +20,6 @@ const middleware = [
 ];
 
 // Store
-export type RootState = ReturnType<typeof persistedRootReducer>;
-
 const store = configureStore({
   reducer: persistedRootReducer,
   middleware,

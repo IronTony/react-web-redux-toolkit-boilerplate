@@ -1,6 +1,11 @@
+import { Reducer } from '@reduxjs/toolkit';
+import { connectRouter } from 'connected-react-router';
+import { persistCombineReducers } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import counter from './counter/reducers';
 import { allFilmsReducer } from './ghibli/reducers';
 import messageHandler from './messageHandler/reducers';
+import { history } from 'routes/history';
 
 const reducers = {
   counter,
@@ -8,4 +13,21 @@ const reducers = {
   messages: messageHandler,
 };
 
-export default reducers;
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: [],
+  blacklist: ['router'],
+};
+
+// Reducers
+const allReducers = {
+  ...reducers,
+  router: connectRouter(history) as Reducer, // to fix CombineState and type incompatibility
+};
+
+const persistedRootReducer = persistCombineReducers(persistConfig, allReducers);
+
+export type RootState = ReturnType<typeof persistedRootReducer>;
+
+export default persistedRootReducer;
