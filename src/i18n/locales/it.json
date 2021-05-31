@@ -1,0 +1,7 @@
+{
+  "common": {
+    "increment": "Incrementa",
+    "decrement": "Decrementa",
+    "reset": "Resetta counter"
+  }
+}

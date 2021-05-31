@@ -1,0 +1,217 @@
+{
+  "name": "react-web-boilerplate",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js",
+    "lint:staged": "pretty-quick --staged && lint-staged",
+    "dependencies:checkCircular": "madge src/ --circular",
+    "dependencies:graph": "madge src/ --circular --image deps-graph.svg",
+    "start:development": "env-cmd -f src/env/.env.development yarn start",
+    "build:development": "env-cmd -f src/env/.env.development yarn build",
+    "build:staging": "env-cmd -f src/env/.env.staging yarn build",
+    "build:production": "env-cmd -f src/env/.env.production yarn build"
+  },
+  "dependencies": {
+    "@babel/core": "7.12.3",
+    "@chakra-ui/react": "^1.6.3",
+    "@chakra-ui/theme-tools": "^1.1.7",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
+    "@reduxjs/toolkit": "1.5.1",
+    "@svgr/webpack": "5.4.0",
+    "@testing-library/jest-dom": "5.12.0",
+    "@testing-library/react": "11.2.7",
+    "@testing-library/user-event": "13.1.9",
+    "@types/jest": "26.0.23",
+    "@types/node": "15.6.1",
+    "@types/react": "17.0.8",
+    "@types/react-dom": "17.0.5",
+    "@typescript-eslint/eslint-plugin": "4.25.0",
+    "@typescript-eslint/parser": "4.25.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.0",
+    "babel-loader": "8.1.0",
+    "babel-plugin-named-asset-import": "^0.3.7",
+    "babel-preset-react-app": "^10.0.0",
+    "bfj": "^7.0.2",
+    "camelcase": "^6.1.0",
+    "case-sensitive-paths-webpack-plugin": "2.3.0",
+    "connected-react-router": "6.9.1",
+    "css-loader": "4.3.0",
+    "date-fns": "2.22.1",
+    "dotenv": "10.0.0",
+    "dotenv-expand": "5.1.0",
+    "env-cmd": "^10.1.0",
+    "eslint": "7.27.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-flowtype": "5.7.2",
+    "eslint-plugin-import": "2.23.4",
+    "eslint-plugin-jest": "24.3.6",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-testing-library": "^3.9.2",
+    "eslint-webpack-plugin": "2.5.4",
+    "file-loader": "6.1.1",
+    "fontfaceobserver": "^2.1.0",
+    "framer-motion": "^4",
+    "fs-extra": "^9.0.1",
+    "history": "4.10.1",
+    "html-webpack-plugin": "4.5.0",
+    "i18next": "20.3.1",
+    "i18next-browser-languagedetector": "6.1.1",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "26.6.0",
+    "jest-circus": "26.6.0",
+    "jest-resolve": "26.6.0",
+    "jest-watch-typeahead": "0.6.1",
+    "lodash": "4.17.21",
+    "mini-css-extract-plugin": "0.11.3",
+    "optimize-css-assets-webpack-plugin": "5.0.4",
+    "pnp-webpack-plugin": "1.6.4",
+    "postcss-flexbugs-fixes": "4.2.1",
+    "postcss-loader": "3.0.0",
+    "postcss-normalize": "8.0.1",
+    "postcss-preset-env": "6.7.0",
+    "postcss-safe-parser": "5.0.2",
+    "prompts": "2.4.0",
+    "react": "17.0.2",
+    "react-app-polyfill": "^2.0.0",
+    "react-dev-utils": "11.0.4",
+    "react-dom": "17.0.2",
+    "react-i18next": "11.10.0",
+    "react-icons": "4.2.0",
+    "react-redux": "7.2.4",
+    "react-refresh": "0.10.0",
+    "react-router-dom": "^5.2.0",
+    "react-spinners": "0.11.0",
+    "redux-persist": "^6.0.0",
+    "redux-saga": "^1.1.3",
+    "resolve": "1.18.1",
+    "resolve-url-loader": "^3.1.2",
+    "sass-loader": "^10.0.5",
+    "semver": "7.3.2",
+    "style-loader": "1.3.0",
+    "terser-webpack-plugin": "4.2.3",
+    "ts-pnp": "1.2.0",
+    "typescript": "4.3.2",
+    "url-loader": "4.1.1",
+    "web-vitals": "^1.0.1",
+    "webpack": "4.44.2",
+    "webpack-dev-server": "3.11.1",
+    "webpack-manifest-plugin": "2.2.0",
+    "with-query": "^1.3.0",
+    "workbox-webpack-plugin": "5.1.4"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "eslint --cache --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint:staged && yarn dependencies:checkCircular && yarn dependencies:graph"
+    }
+  },
+  "madge": {
+    "tsConfig": "./tsconfig.json",
+    "fileExtensions": "ts",
+    "excludeRegExp": [
+      ".*\\.test\\.ts$",
+      ".*\\.test\\.tsx$"
+    ],
+    "detectiveOptions": {
+      "ts": {
+        "skipTypeImports": true
+      }
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts"
+    ],
+    "setupFiles": [
+      "react-app-polyfill/jsdom"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.ts"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+    ],
+    "testEnvironment": "jsdom",
+    "testRunner": "/Users/irontony/Desktop/my-app/node_modules/jest-circus/runner.js",
+    "transform": {
+      "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/config/jest/babelTransform.js",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
+      "^.+\\.module\\.(css|sass|scss)$"
+    ],
+    "modulePaths": [],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web",
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+    },
+    "moduleFileExtensions": [
+      "web.js",
+      "js",
+      "web.ts",
+      "ts",
+      "web.tsx",
+      "tsx",
+      "json",
+      "web.jsx",
+      "jsx",
+      "node"
+    ],
+    "watchPlugins": [
+      "jest-watch-typeahead/filename",
+      "jest-watch-typeahead/testname"
+    ],
+    "resetMocks": true
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  },
+  "devDependencies": {
+    "@types/react-redux": "7.1.16",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-emotion": "11.0.0",
+    "eslint-plugin-prettier": "3.4.0",
+    "husky": "6.0.0",
+    "lint-staged": "11.0.0",
+    "madge": "4.0.2",
+    "prettier": "2.3.0",
+    "pretty-quick": "3.1.0"
+  }
+}
