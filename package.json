@@ -6,13 +6,15 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
+    "lint": "eslint ./src",
     "lint:staged": "pretty-quick --staged && lint-staged",
     "dependencies:checkCircular": "madge src/ --circular",
     "dependencies:graph": "madge src/ --circular --image deps-graph.svg",
     "start:development": "env-cmd -f src/env/.env.development yarn start",
     "build:development": "env-cmd -f src/env/.env.development yarn build",
     "build:staging": "env-cmd -f src/env/.env.staging yarn build",
-    "build:production": "env-cmd -f src/env/.env.production yarn build"
+    "build:production": "env-cmd -f src/env/.env.production yarn build",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@babel/core": "7.12.3",
@@ -66,7 +68,7 @@
     "i18next-browser-languagedetector": "6.1.1",
     "identity-obj-proxy": "3.0.0",
     "jest": "26.6.0",
-    "jest-circus": "26.6.0",
+    "jest-circus": "^27.0.3",
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
     "lodash": "4.17.21",
@@ -165,7 +167,7 @@
       "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
     ],
     "testEnvironment": "jsdom",
-    "testRunner": "/Users/irontony/Desktop/my-app/node_modules/jest-circus/runner.js",
+    "testRunner": "<rootDir>/node_modules/jest-circus/runner.js",
     "transform": {
       "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/config/jest/babelTransform.js",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
