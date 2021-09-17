@@ -22,8 +22,10 @@ function* getAllFilmsSaga({ payload }: PayloadAction<GetAllFilmsRequestPayload>)
       yield put(messageHandlerSet({ message: filmsRes?.message, type: 'error', description: 'No films found!' }));
     }
   } catch (err) {
-    yield put(getAllFilmsFailed());
-    yield put(messageHandlerSet({ message: err?.message, type: 'error', description: 'No films found!' }));
+    if (err instanceof SyntaxError) {
+      yield put(getAllFilmsFailed());
+      yield put(messageHandlerSet({ message: err?.message, type: 'error', description: 'No films found!' }));
+    }
   }
 }
 
