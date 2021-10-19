@@ -1,15 +1,15 @@
-import * as React from "react";
-import { FC, useEffect, useLayoutEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import FontFaceObserver from "fontfaceobserver";
-import { CSSReset, useToast, Flex } from "@chakra-ui/react";
-import { Switch, Route } from "react-router-dom";
-import { messageHandlerFullInfo } from "redux/messageHandler/selectors";
-import { messageHandlerReset } from "redux/messageHandler/actions";
-import WBHeader from "components/WBHeader";
-import ScrollToTop from "components/ScrollToTopOnMount";
-import Homepage from "pages/Homepage";
-import AnotherPage from "pages/AnotherPage";
+import * as React from 'react';
+import { FC, useEffect, useLayoutEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import FontFaceObserver from 'fontfaceobserver';
+import { CSSReset, useToast, Flex } from '@chakra-ui/react';
+import { Switch, Route } from 'react-router-dom';
+import { messageHandlerFullInfo } from 'redux/messageHandler/selectors';
+import { messageHandlerReset } from 'redux/messageHandler/actions';
+import WBHeader from 'components/WBHeader';
+import ScrollToTop from 'components/ScrollToTopOnMount';
+import Homepage from 'pages/Homepage';
+import AnotherPage from 'pages/AnotherPage';
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -17,21 +17,21 @@ const App: FC = () => {
   const hasGeneralMessage = useSelector(messageHandlerFullInfo);
 
   // Remember to change the name of the font based on what you are using
-  const font = new FontFaceObserver("Nunito+Sans");
+  const font = new FontFaceObserver('Nunito+Sans');
   const html = document.documentElement;
 
   useLayoutEffect(() => {
-    html.classList.add("fonts-loading");
+    html.classList.add('fonts-loading');
 
     font
       .load()
       .then(function () {
-        html.classList.remove("fonts-loading");
-        html.classList.add("fonts-loaded");
+        html.classList.remove('fonts-loading');
+        html.classList.add('fonts-loaded');
       })
       .catch(function () {
-        html.classList.remove("fonts-loading");
-        html.classList.add("fonts-failed");
+        html.classList.remove('fonts-loading');
+        html.classList.add('fonts-failed');
       });
   });
 
