@@ -114,7 +114,8 @@
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
       "yarn prettier:fix",
-      "yarn prettier:check"
+      "yarn prettier:check",
+      "git add"
     ]
   },
   "madge": {
