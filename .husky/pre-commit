@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn lint:staged && yarn dependencies:checkCircular && yarn dependencies:graph
+yarn run pre-commit

@@ -1,7 +1,7 @@
-import React, { FC } from "react";
-import { css } from "@emotion/react";
-import MoonLoader from "react-spinners/MoonLoader";
-import { palette } from "theme/theme";
+import { css } from '@emotion/react';
+import { FC } from 'react';
+import MoonLoader from 'react-spinners/MoonLoader';
+import { palette } from 'theme/theme';
 
 const override = css`
   display: block;
