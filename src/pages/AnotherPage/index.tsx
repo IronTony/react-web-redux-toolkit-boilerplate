@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { counterInfo } from 'redux/counter/selectors';

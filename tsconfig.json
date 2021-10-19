@@ -12,7 +12,7 @@
     "moduleResolution": "node", // Resolve modules using Node.js style
     "resolveJsonModule": true, // Include modules imported with .json extension
     "isolatedModules": false, // Transpile each file as a separate module (similar to 'ts.transpileModule')
-    "jsx": "react", // Support JSX in .tsx files
+    "jsx": "react-jsx", // Support JSX in .tsx files
     "sourceMap": true, // Generate corrresponding .map file
     "declaration": true, // Generate corresponding .d.ts file
     "noUnusedLocals": false, // Report errors on unused locals

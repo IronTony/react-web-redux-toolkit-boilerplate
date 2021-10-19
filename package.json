@@ -1,13 +1,15 @@
 {
   "name": "react-web-boilerplate",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "eslint ./src",
-    "lint:staged": "pretty-quick --staged && lint-staged",
+    "lint": "eslint --fix --max-warnings=0 './src/**/*.{js,jsx,ts,tsx}'",
+    "pre-commit": "yarn lint && lint-staged && yarn dependencies:checkCircular && yarn dependencies:graph",
+    "prettier:fix": "prettier --write ./src",
+    "prettier:check": "prettier --check ./src",
     "dependencies:checkCircular": "madge src/ --circular",
     "dependencies:graph": "madge src/ --circular --image deps-graph.svg",
     "start:development": "env-cmd -f src/env/.env.development yarn start",
@@ -110,12 +112,11 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "eslint --cache --fix"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint:staged && yarn dependencies:checkCircular && yarn dependencies:graph"
-    }
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "yarn prettier:fix",
+      "yarn prettier:check",
+      "git add"
+    ]
   },
   "madge": {
     "tsConfig": "./tsconfig.json",

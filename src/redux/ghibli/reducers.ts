@@ -1,9 +1,5 @@
-import { createReducer } from "@reduxjs/toolkit";
-import {
-  getAllFilmsFailed,
-  getAllFilmsRequest,
-  getAllFilmsSuccess,
-} from "./actions";
+import { createReducer } from '@reduxjs/toolkit';
+import { getAllFilmsFailed, getAllFilmsRequest, getAllFilmsSuccess } from './actions';
 
 export interface IFilmsState {
   loading: boolean;

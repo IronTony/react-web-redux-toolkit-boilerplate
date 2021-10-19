@@ -1,5 +1,5 @@
-import React, { FC, ReactNode } from "react";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex } from '@chakra-ui/react';
+import { FC, ReactNode } from 'react';
 
 interface IWBContainer {
   children: ReactNode;
@@ -7,22 +7,17 @@ interface IWBContainer {
   mt?: string | number;
 }
 
-const WBContainer: FC<IWBContainer> = ({ children, px, mt = "80px" }) => {
+const WBContainer: FC<IWBContainer> = ({ children, px, mt = '80px' }) => {
   return (
-    <Box mx="auto" px={px} pt={{ base: "56px", lg: "0" }} mt={mt} width="100%">
+    <Box mx="auto" px={px} pt={{ base: '56px', lg: '0' }} mt={mt} width="100%">
       <Flex
         align="flex-end"
-        px={{ base: "12px" }}
+        px={{ base: '12px' }}
         pt="32px"
         pb="80px"
         // height={{ height: 'calc(100% - 80px)' }}
       >
-        <Box
-          maxW={{ lg: "1224px" }}
-          display={{ base: "none", lg: "block" }}
-          w="100%"
-          mx="auto"
-        >
+        <Box maxW={{ lg: '1224px' }} display={{ base: 'none', lg: 'block' }} w="100%" mx="auto">
           <Box>{children}</Box>
         </Box>
       </Flex>

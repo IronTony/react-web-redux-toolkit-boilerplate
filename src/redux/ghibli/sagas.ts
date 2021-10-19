@@ -21,16 +21,14 @@ function* getAllFilmsSaga({ payload }: PayloadAction<GetAllFilmsRequestPayload>)
       yield put(getAllFilmsFailed());
       yield put(messageHandlerSet({ message: filmsRes?.message, type: 'error', description: 'No films found!' }));
     }
-  } catch (err) {
-    if (err instanceof SyntaxError) {
-      yield put(getAllFilmsFailed());
-      yield put(messageHandlerSet({ message: err?.message, type: 'error', description: 'No films found!' }));
-    }
+  } catch (err: any) {
+    yield put(getAllFilmsFailed());
+    yield put(messageHandlerSet({ message: err?.message, type: 'error', description: 'No films found!' }));
   }
 }
 
-function* artworkSaga() {
+function* filmsSaga() {
   yield takeLatest(getAllFilmsRequest.type, getAllFilmsSaga);
 }
 
-export default artworkSaga;
+export default filmsSaga;

@@ -1,8 +1,8 @@
-import React, { FC, ReactNode } from "react";
-import { NavLink } from "react-router-dom";
-import { Box, Divider } from "@chakra-ui/react";
-import { isActivePage } from "utils";
-import { palette } from "theme/theme";
+import { Box, Divider } from '@chakra-ui/react';
+import React, { FC, ReactNode } from 'react';
+import { NavLink } from 'react-router-dom';
+import { palette } from 'theme/theme';
+import { isActivePage } from 'utils';
 
 interface IMenuItems {
   children: ReactNode;
@@ -11,8 +11,8 @@ interface IMenuItems {
 const MenuItems: FC<IMenuItems> = ({ children }) => (
   <Box
     textAlign="center"
-    pl={{ lg: "8px", xl: "11px" }}
-    pr={{ lg: "8px", xl: "11px" }}
+    pl={{ lg: '8px', xl: '11px' }}
+    pr={{ lg: '8px', xl: '11px' }}
     color={palette.WET_ASPHALT}
     fontSize="lg"
     lineHeight="22px"
@@ -37,7 +37,7 @@ const WBMenu: FC = () => {
         </NavLink>
       </MenuItems>
 
-      <Divider display={{ lg: "none" }} />
+      <Divider display={{ lg: 'none' }} />
 
       <MenuItems>
         <NavLink
