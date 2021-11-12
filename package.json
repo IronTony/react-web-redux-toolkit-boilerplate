@@ -6,7 +6,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "eslint --fix --max-warnings=0 './src/**/*.{js,jsx,ts,tsx}'",
+    "lint": "eslint --fix --max-warnings=0 \"./src/**/*.{js,jsx,ts,tsx}\"",
     "pre-commit": "yarn lint && lint-staged && yarn dependencies:checkCircular && yarn dependencies:graph",
     "prettier:fix": "prettier --write ./src",
     "prettier:check": "prettier --check ./src",
