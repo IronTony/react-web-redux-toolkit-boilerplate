@@ -1,36 +1,20 @@
-import React, { FC } from 'react';
-// import { useSelector } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
-// import { userAuthenticated } from 'redux/auth/selectors';
+import { FC, ReactElement } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import { AppRoutes } from './routesList';
 
-interface IPrivateRoute {
-  component: any;
-  path: string;
-  rest?: Record<string, unknown>;
-  exact?: boolean;
+interface Props {
+  children: ReactElement<any, any> | null;
+  redirectTo?: string;
 }
 
-const PrivateRoute: FC<IPrivateRoute> = ({ component: Component, ...rest }) => {
-  //   const isAuthenticated = useSelector(userAuthenticated);
+const PrivateRoute: FC<Props> = ({ children, redirectTo = AppRoutes.NoAccessPage }) => {
   const isAuthenticated = false;
+  const isLoading = false;
+  const location = useLocation();
 
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        isAuthenticated ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: '/login',
-              state: { from: props.location },
-            }}
-          />
-        )
-      }
-    />
-  );
+  if (isLoading) return null;
+
+  return isAuthenticated ? children : <Navigate replace to={redirectTo} state={{ path: location.pathname }} />;
 };
 
 export { PrivateRoute };

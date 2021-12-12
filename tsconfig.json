@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5", // Specify ECMAScript target version
+    "target": "es2020", // Specify ECMAScript target version
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true, // Allow JavaScript files to be compiled
     "skipLibCheck": true, // Skip type checking of all declaration files
@@ -22,6 +22,9 @@
     "noEmit": true,
     "noImplicitAny": false, // Type-safety check: Raise error on expressions and declarations with an implied 'any' type
     "baseUrl": "src"
+    "paths": {
+      "@assets/*": ["src/assets/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "build"] // *** The files to not type check ***

@@ -1,8 +1,8 @@
 import { Box, Divider } from '@chakra-ui/react';
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AppRoutes } from 'routes/routesList';
 import { palette } from 'theme/theme';
-import { isActivePage } from 'utils';
 
 interface IMenuItems {
   children: ReactNode;
@@ -28,10 +28,10 @@ const WBMenu: FC = () => {
     <>
       <MenuItems>
         <NavLink
-          to="/"
-          activeClassName="navbar__link--active"
-          className="navbar__link"
-          isActive={(match, location) => isActivePage(match, location)}
+          to={AppRoutes.HomePage}
+          className={({ isActive }) =>
+            ['navbar__link', isActive ? 'navbar__link--active_red' : null].filter(Boolean).join(' ')
+          }
         >
           Home
         </NavLink>
@@ -41,11 +41,23 @@ const WBMenu: FC = () => {
 
       <MenuItems>
         <NavLink
-          to="/another-page"
-          activeClassName="navbar__link--active navbar__link--active_orange"
-          className="navbar__link"
+          to={AppRoutes.AnotherPage}
+          className={({ isActive }) =>
+            ['navbar__link', isActive ? 'navbar__link--active_orange' : null].filter(Boolean).join(' ')
+          }
         >
           Another Page
+        </NavLink>
+      </MenuItems>
+
+      <MenuItems>
+        <NavLink
+          to={AppRoutes.PrivatePage}
+          className={({ isActive }) =>
+            ['navbar__link', isActive ? 'navbar__link--active_green' : null].filter(Boolean).join(' ')
+          }
+        >
+          Private Page
         </NavLink>
       </MenuItems>
     </>

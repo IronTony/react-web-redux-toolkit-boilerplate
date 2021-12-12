@@ -1,3 +1,8 @@
+/*  split translations on \n */
+#root {
+  white-space: pre-line;
+}
+
 html {
   height: 100%;
 }

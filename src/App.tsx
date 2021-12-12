@@ -1,15 +1,17 @@
-import * as React from 'react';
+import { CSSReset, useToast, Flex } from '@chakra-ui/react';
+import ScrollToTop from 'components/ScrollToTopOnMount';
+import WBHeader from 'components/WBHeader';
+import FontFaceObserver from 'fontfaceobserver';
+import AnotherPage from 'pages/AnotherPage';
+import Homepage from 'pages/Homepage';
+import PrivatePage from 'pages/PrivatePage';
 import { FC, useEffect, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import FontFaceObserver from 'fontfaceobserver';
-import { CSSReset, useToast, Flex } from '@chakra-ui/react';
-import { Switch, Route } from 'react-router-dom';
-import { messageHandlerFullInfo } from 'redux/messageHandler/selectors';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { messageHandlerReset } from 'redux/messageHandler/actions';
-import WBHeader from 'components/WBHeader';
-import ScrollToTop from 'components/ScrollToTopOnMount';
-import Homepage from 'pages/Homepage';
-import AnotherPage from 'pages/AnotherPage';
+import { messageHandlerFullInfo } from 'redux/messageHandler/selectors';
+import { PrivateRoute } from 'routes/privateRoute';
+import { AppRoutes } from 'routes/routesList';
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -38,9 +40,8 @@ const App: FC = () => {
   useEffect(() => {
     if (hasGeneralMessage?.message) {
       toast({
-        // title: 'Warning.',
-        description: hasGeneralMessage.description,
-        status: hasGeneralMessage.type,
+        description: hasGeneralMessage?.message,
+        status: hasGeneralMessage?.type,
         duration: 3000,
         isClosable: true,
       });
@@ -57,13 +58,23 @@ const App: FC = () => {
       <>
         <WBHeader />
         <ScrollToTop />
+        <Routes>
+          <Route path="*" element={<Navigate replace to={AppRoutes.HomePage} />} />
+          <Route path={AppRoutes.HomePage} element={<Homepage />} />
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route exact path="/" component={Homepage} />
-          <Route path="/another-page" component={AnotherPage} />
-        </Switch>
+          <Route path={AppRoutes.AnotherPage} element={<AnotherPage />} />
+
+          <Route
+            path={AppRoutes.PrivatePage}
+            element={
+              <PrivateRoute redirectTo={AppRoutes.NoAccessPage}>
+                <PrivatePage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route path="/" element={<Navigate replace to={AppRoutes.HomePage} />} />
+        </Routes>
       </>
     </Flex>
   );

@@ -1,14 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import createSagaMiddleware from 'redux-saga';
-import { routerMiddleware } from 'connected-react-router';
 import { persistStore } from 'redux-persist';
-import { history } from 'routes/history';
-import rootSaga from './rootsaga';
+import createSagaMiddleware from 'redux-saga';
+import { createReduxHistory, routerMiddleware } from './connectedRoutes';
 import persistedRootReducer from './reducers';
+import rootSaga from './rootsaga';
 
 // Middleware
 const sagaMiddleware = createSagaMiddleware();
-const middleware = [routerMiddleware(history), sagaMiddleware];
+const middleware = [sagaMiddleware, routerMiddleware];
 
 // Store
 const store = configureStore({
@@ -26,6 +25,8 @@ const store = configureStore({
 
 const persistor = persistStore(store);
 
+const history = createReduxHistory(store);
+
 sagaMiddleware.run(rootSaga);
 
-export { store, persistor };
+export { history, store, persistor };
