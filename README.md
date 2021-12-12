@@ -69,8 +69,8 @@ You can create more of these commands, as you wish...
 ✅ Add `redux-persist` (https://github.com/rt2zz/redux-persist)<br/>
 ✅ Add `redux-saga`<br/>
 ✅ Add `i18next`<br/>
-✅ Add `react-router-dom v5` ❤️<br/>
-✅ Add UI Design System (`ChakraUI v1.6.3`)<br />
+✅ Add `react-router-dom v6.1.1` ❤️<br/>
+✅ Add UI Design System (`ChakraUI v1.7.3`)<br />
 ✅ Add multi `Env` ⚗️⚗️⚗️<br />
 ✅ Add Typescript<br />
 

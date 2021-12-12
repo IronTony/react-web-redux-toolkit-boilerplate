@@ -1,9 +1,9 @@
 import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import { languagesResources } from './languageConfig';
+import { initReactI18next } from 'react-i18next';
+import { defaultLanguage, languagesResources } from './languageConfig';
 
-const fallbackLng = ['en'];
+const fallbackLng = defaultLanguage;
 const availableLanguages = ['en', 'it', 'de', 'fr', 'es'];
 
 const options = {
@@ -34,10 +34,8 @@ i18n
 
     // lng: 'en',
     fallbackLng,
-    whitelist: availableLanguages,
+    supportedLngs: availableLanguages,
 
-    ns: ['common'],
-    defaultNS: 'common',
     resources: languagesResources,
     load: 'languageOnly',
 

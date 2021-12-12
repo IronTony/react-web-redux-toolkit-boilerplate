@@ -1,5 +1,6 @@
-import { createBrowserHistory } from 'history';
+// import { createReduxHistory } from 'redux/connectedRoutes';
+// import { store } from 'redux/store';
 
-const history = createBrowserHistory();
+// const history = createReduxHistory(store);
 
-export { history };
+// export { history };

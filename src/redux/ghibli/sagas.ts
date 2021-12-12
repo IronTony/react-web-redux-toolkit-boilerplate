@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { call, put, takeLatest } from 'redux-saga/effects';
 import isEmpty from 'lodash/isEmpty';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { messageHandlerSet } from 'redux/messageHandler/actions';
 import { getAllFilmsFailed, getAllFilmsRequest, getAllFilmsSuccess } from './actions';
 import * as FilmsAPI from './apiCall';
@@ -14,16 +14,14 @@ function* getAllFilmsSaga({ payload }: PayloadAction<GetAllFilmsRequestPayload>)
 
     if (!isEmpty(filmsRes)) {
       yield put(getAllFilmsSuccess(filmsRes));
-      yield put(
-        messageHandlerSet({ message: 'Success', type: 'success', description: 'Check redux panel for the list!' }),
-      );
+      yield put(messageHandlerSet({ message: 'Check redux panel for the list!', type: 'success' }));
     } else {
       yield put(getAllFilmsFailed());
-      yield put(messageHandlerSet({ message: filmsRes?.message, type: 'error', description: 'No films found!' }));
+      yield put(messageHandlerSet({ message: filmsRes?.message, type: 'error' }));
     }
   } catch (err: any) {
     yield put(getAllFilmsFailed());
-    yield put(messageHandlerSet({ message: err?.message, type: 'error', description: 'No films found!' }));
+    yield put(messageHandlerSet({ message: err?.message, type: 'error' }));
   }
 }
 

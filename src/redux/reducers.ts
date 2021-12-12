@@ -1,11 +1,9 @@
-import { Reducer } from '@reduxjs/toolkit';
-import { connectRouter } from 'connected-react-router';
 import { persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { routerReducer } from './connectedRoutes';
+import counter from './counter/reducers';
 import { allFilmsReducer } from './ghibli/reducers';
 import messageHandler from './messageHandler/reducers';
-import { history } from 'routes/history';
-import counter from './counter/reducers';
 
 const reducers = {
   counter,
@@ -23,7 +21,7 @@ const persistConfig = {
 // Reducers
 const allReducers = {
   ...reducers,
-  router: connectRouter(history) as Reducer, // to fix CombineState and type incompatibility
+  router: routerReducer, // to fix CombineState and type incompatibility
 };
 
 const persistedRootReducer = persistCombineReducers(persistConfig, allReducers);

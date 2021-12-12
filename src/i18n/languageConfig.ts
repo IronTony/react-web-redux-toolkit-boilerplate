@@ -7,6 +7,6 @@ export const defaultLanguage = 'en';
 
 // Export here your language files import
 export const languagesResources = {
-  en,
-  it,
+  en: { translation: en },
+  it: { translation: it },
 };

@@ -112,31 +112,32 @@ module.exports = function (webpackEnv) {
         loader: require.resolve('css-loader'),
         options: cssOptions,
       },
-      {
-        // Options for PostCSS as we reference these options twice
-        // Adds vendor prefixing based on your specified browser support in
-        // package.json
-        loader: require.resolve('postcss-loader'),
-        options: {
-          // Necessary for external CSS imports to work
-          // https://github.com/facebook/create-react-app/issues/2677
-          ident: 'postcss',
-          plugins: () => [
-            require('postcss-flexbugs-fixes'),
-            require('postcss-preset-env')({
-              autoprefixer: {
-                flexbox: 'no-2009',
-              },
-              stage: 3,
-            }),
-            // Adds PostCSS Normalize as the reset css with default options,
-            // so that it honors browserslist config in package.json
-            // which in turn let's users customize the target behavior as per their needs.
-            postcssNormalize(),
-          ],
-          sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
-        },
-      },
+      // COMMENTED DUE FRAMER-MOTION INSTALLATION
+      // {
+      //   // Options for PostCSS as we reference these options twice
+      //   // Adds vendor prefixing based on your specified browser support in
+      //   // package.json
+      //   loader: require.resolve('postcss-loader'),
+      //   options: {
+      //     // Necessary for external CSS imports to work
+      //     // https://github.com/facebook/create-react-app/issues/2677
+      //     ident: 'postcss',
+      //     plugins: () => [
+      //       require('postcss-flexbugs-fixes'),
+      //       require('postcss-preset-env')({
+      //         autoprefixer: {
+      //           flexbox: 'no-2009',
+      //         },
+      //         stage: 3,
+      //       }),
+      //       // Adds PostCSS Normalize as the reset css with default options,
+      //       // so that it honors browserslist config in package.json
+      //       // which in turn let's users customize the target behavior as per their needs.
+      //       postcssNormalize(),
+      //     ],
+      //     sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
+      //   },
+      // },
     ].filter(Boolean);
     if (preProcessor) {
       loaders.push(
@@ -388,6 +389,12 @@ module.exports = function (webpackEnv) {
                 limit: imageInlineSizeLimit,
                 name: 'static/media/[name].[hash:8].[ext]',
               },
+            },
+            // Make whatever fine-grained changes you need
+            {
+              type: 'javascript/auto',
+              test: /\.mjs$/,
+              include: /node_modules/,
             },
             // Process application JS with Babel.
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
