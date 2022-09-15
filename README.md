@@ -70,7 +70,7 @@ You can create more of these commands, as you wish...
 ✅ Add `redux-saga`<br/>
 ✅ Add `i18next`<br/>
 ✅ Add `react-router-dom v6` ❤️<br/>
-✅ Add UI Design System (`ChakraUI v1.8.7`)<br />
+✅ Add UI Design System (`ChakraUI v2.3.2`)<br />
 ✅ Add multi `Env` ⚗️⚗️⚗️<br />
 ✅ Add Typescript<br />
 
