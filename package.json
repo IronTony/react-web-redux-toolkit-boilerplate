@@ -14,7 +14,9 @@
     "dependencies:graph": "madge src/ --circular --image deps-graph.svg",
     "start:development": "env-cmd -f src/env/.env.development yarn start",
     "build:development": "env-cmd -f src/env/.env.development yarn build",
+    "start:staging": "env-cmd -f src/env/.env.staging yarn start",
     "build:staging": "env-cmd -f src/env/.env.staging yarn build",
+    "start:production": "env-cmd -f src/env/.env.production yarn start",
     "build:production": "env-cmd -f src/env/.env.production yarn build",
     "prepare": "husky install"
   },
