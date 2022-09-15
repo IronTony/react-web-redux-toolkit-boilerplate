@@ -1,13 +1,12 @@
-import { css } from '@emotion/react';
-import { FC } from 'react';
+import { CSSProperties, FC } from 'react';
 import MoonLoader from 'react-spinners/MoonLoader';
 import { palette } from 'theme/theme';
 
-const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: red;
-`;
+const override: CSSProperties = {
+  display: 'block',
+  margin: '0 auto',
+  borderColor: 'red',
+};
 
 interface IWBLoader {
   color?: string;
@@ -15,7 +14,7 @@ interface IWBLoader {
 }
 
 const WBLoader: FC<IWBLoader> = ({ color = palette.BBLUE, size = 50 }) => {
-  return <MoonLoader css={override} size={size} color={color} loading />;
+  return <MoonLoader cssOverride={override} size={size} color={color} loading />;
 };
 
 export default WBLoader;
