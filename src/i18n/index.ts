@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next';
 import { defaultLanguage, languagesResources } from './languageConfig';
 
 const fallbackLng = defaultLanguage;
-const availableLanguages = ['en', 'it', 'de', 'fr', 'es'];
+const availableLanguages = ['en', 'it' /*, 'de', 'fr', 'es'*/];
 
 const options = {
   // order and from where user language should be detected
